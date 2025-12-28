@@ -23,6 +23,11 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
     - Fix mongodb update logic [@durzo](https://github.com/durzo) ([#10388](https://github.com/community-scripts/ProxmoxVE/pull/10388))
     - fix pulse downloading incorrect tarball [@durzo](https://github.com/durzo) ([#10383](https://github.com/community-scripts/ProxmoxVE/pull/10383))
 
+  - #### 🔧 Refactor
+
+    - Linkwarden: enable Corepack and prepare Yarn v4 before running yarn [@MickLesk](https://github.com/MickLesk) ([#10390](https://github.com/community-scripts/ProxmoxVE/pull/10390))
+    - metube: use pnpm + corepack for frontend build [@MickLesk](https://github.com/MickLesk) ([#10392](https://github.com/community-scripts/ProxmoxVE/pull/10392))
+
 ### 💾 Core
 
   - #### 🐞 Bug Fixes
