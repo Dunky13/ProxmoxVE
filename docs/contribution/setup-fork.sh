@@ -86,7 +86,7 @@ detect_repo_name() {
     fi
 
     # Extract repo name (remove .git if present)
-    if [[ $remote_url =~ /([^/]+?)(.git)?$ ]]; then
+    if [[ $remote_url =~ /([^/]+)(.git)?$ ]]; then
         local repo="${BASH_REMATCH[1]}"
         echo "${repo%.git}"
     else
@@ -99,7 +99,7 @@ confirm() {
     local prompt="$1"
     local response
 
-    read -p "$(echo -e ${YELLOW})$prompt (y/n)${NC} " -r response
+    read -p "$(echo -e ${YELLOW})$prompt (y/n)$(echo -e ${NC}) " -r response
     [[ $response =~ ^[Yy]$ ]]
 }
 
