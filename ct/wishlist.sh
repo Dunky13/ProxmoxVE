@@ -35,14 +35,29 @@ function update_script() {
     msg_ok "Service Stopped"
 
     cp /opt/wishlist/.env /opt/
-    rm -R /opt/wishlist
-    fetch_and_deploy_gh_release "wishlist" "cmintey/wishlist" "tarball"
+    cp -R /opt/wishlist/uploads /opt/
+    cp -R /opt/wishlist/data /opt/
+    CLEAN_INSTALL=1 fetch_and_deploy_gh_release "wishlist" "cmintey/wishlist" "tarball"
+    LATEST_APP_VERSION=$(get_latest_github_release "cmintey/wishlist")
+
 
     msg_info "Updating ${APP}"
     cd /opt/wishlist || exit
-    mv /opt/.env /opt/wishlist/.env
+
     $STD pnpm install
-    $STD pnpm build
+    $STD pnpm svelte-kit sync
+    $STD pnpm prisma generate
+    $STD sed -i 's|/usr/src/app/|/opt/wishlist/|g' $(grep -rl '/usr/src/app/' /opt/wishlist)
+    export VERSION="${LATEST_APP_VERSION}" 
+    export SHA="${LATEST_APP_VERSION}" 
+    $STD pnpm run build
+    $STD pnpm prune --prod
+    $STD chmod +x /opt/wishlist/entrypoint.sh
+
+    mv /opt/.env /opt/wishlist/.env
+    mv /opt/uploads /opt/wishlist/uploads
+    mv /opt/data /opt/wishlist/data
+
     msg_ok "Updated ${APP}"
 
     msg_info "Starting Service"

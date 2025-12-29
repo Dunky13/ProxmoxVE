@@ -65,3 +65,4 @@ msg_ok "Created Service"
 motd_ssh
 customize
 cleanup_lxc
+echo "Edit /opt/wishlist/.env to customize settings"
