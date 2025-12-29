@@ -23,6 +23,8 @@ fetch_and_deploy_gh_release "wishlist" "cmintey/wishlist" "tarball"
 msg_info "Installing Wishlist"
 cd /opt/wishlist || exit
 cat <<EOF >/opt/wishlist/.env
+  VERSION=latest
+  SHA="1234567890abcdef" # Replace with actual SHA from release notes
   NODE_ENV=production
   BODY_SIZE_LIMIT=5000000
   ORIGIN="http://0.0.0.0:3280" # The URL your users will be connecting to
