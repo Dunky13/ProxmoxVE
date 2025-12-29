@@ -14,7 +14,7 @@ network_check
 update_os
 
 msg_info "Installing dependencies"
-$STD apt install -y build-essential python3 openssl git caddy=2.10.0
+$STD apt install -y build-essential python3 openssl git caddy
 msg_ok "Installed dependencies"
 
 NODE_VERSION="24" NODE_MODULE="pnpm" setup_nodejs
