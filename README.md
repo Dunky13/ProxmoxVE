@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/images/logo-81x112.png" height="120px" alt="Proxmox VE Helper-Scripts Logo" />
+  <img src="https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/images/logo-81x112.png" height="120px" alt="Proxmox VE Helper-Scripts Logo" />
   
   <h1>Proxmox VE Helper-Scripts</h1>
   <p><em>A Community Legacy in Memory of @tteck</em></p>
@@ -30,7 +30,7 @@
 
   <br />
 
- **Simplify your Proxmox VE setup with community-driven automation scripts**  
+**Simplify your Proxmox VE setup with community-driven automation scripts**  
  Originally created by tteck, now maintained and expanded by the community
 
 </div>
@@ -141,7 +141,7 @@ The fastest way to get started:
 Install a convenient script manager directly in your Proxmox UI:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/pve-scripts-local.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/ct/pve-scripts-local.sh)"
 ```
 
 This adds a menu to your Proxmox interface for easy script access without visiting the website.
@@ -240,6 +240,7 @@ This project is maintained by volunteers in memory of tteck. Your support helps 
 ---
 
 ## 📈 Project Statistics
+
 <p align="center">
   <img
     src="https://repobeats.axiom.co/api/embed/57edde03e00f88d739bdb5b844ff7d07dd079375.svg"
