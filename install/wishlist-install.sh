@@ -19,12 +19,11 @@ msg_ok "Installed dependencies"
 
 NODE_VERSION="24" NODE_MODULE="pnpm" setup_nodejs
 fetch_and_deploy_gh_release "wishlist" "cmintey/wishlist" "tarball"
+LATEST_APP_VERSION=$(get_latest_github_release "cmintey/wishlist"))
 
 msg_info "Installing Wishlist"
 cd /opt/wishlist || exit
 cat <<EOF >/opt/wishlist/.env
-  VERSION=latest
-  SHA="1234567890abcdef" # Replace with actual SHA from release notes
   NODE_ENV=production
   BODY_SIZE_LIMIT=5000000
   ORIGIN="http://0.0.0.0:3280" # The URL your users will be connecting to
@@ -35,7 +34,8 @@ EOF
 $STD pnpm install
 $STD pnpm svelte-kit sync
 $STD pnpm prisma generate
-$STD pnpm run build
+$STD sed -i 's|/usr/src/app/|/opt/wishlist/|g' $(grep -rl '/usr/src/app/' /opt/wishlist)
+$STD VERSION="${LATEST_APP_VERSION}" SHA="${LATEST_APP_VERSION}" pnpm run build
 $STD pnpm prune --prod
 $STD chmod +x /opt/wishlist/entrypoint.sh
 msg_ok "Installed Wishlist"
