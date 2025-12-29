@@ -20,7 +20,8 @@ msg_ok "Installed dependencies"
 NODE_VERSION="24" NODE_MODULE="pnpm" setup_nodejs
 fetch_and_deploy_gh_release "wishlist" "cmintey/wishlist" "tarball"
 LATEST_APP_VERSION=$(get_latest_github_release "cmintey/wishlist")
-
+VERSION="${LATEST_APP_VERSION}" 
+SHA="${LATEST_APP_VERSION}" 
 msg_info "Installing Wishlist"
 cd /opt/wishlist || exit
 cat <<EOF >/opt/wishlist/.env
@@ -28,15 +29,13 @@ cat <<EOF >/opt/wishlist/.env
   BODY_SIZE_LIMIT=5000000
   ORIGIN="http://0.0.0.0:3280" # The URL your users will be connecting to
   TOKEN_TIME=72 # hours until signup and password reset tokens expire
-  DEFAULT_CURRENCY=USD
+  DEFAULT_CURRENCY=EUR
   MAX_IMAGE_SIZE=5000000 # 5 megabytes
 EOF
 $STD pnpm install
 $STD pnpm svelte-kit sync
 $STD pnpm prisma generate
 $STD sed -i 's|/usr/src/app/|/opt/wishlist/|g' $(grep -rl '/usr/src/app/' /opt/wishlist)
-export VERSION="${LATEST_APP_VERSION}" 
-export SHA="${LATEST_APP_VERSION}" 
 $STD pnpm run build
 $STD pnpm prune --prod
 $STD chmod +x /opt/wishlist/entrypoint.sh
