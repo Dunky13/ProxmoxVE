@@ -35,7 +35,9 @@ $STD pnpm install
 $STD pnpm svelte-kit sync
 $STD pnpm prisma generate
 $STD sed -i 's|/usr/src/app/|/opt/wishlist/|g' $(grep -rl '/usr/src/app/' /opt/wishlist)
-$STD VERSION="${LATEST_APP_VERSION}" SHA="${LATEST_APP_VERSION}" pnpm run build
+export VERSION="${LATEST_APP_VERSION}" 
+export SHA="${LATEST_APP_VERSION}" 
+$STD pnpm run build
 $STD pnpm prune --prod
 $STD chmod +x /opt/wishlist/entrypoint.sh
 msg_ok "Installed Wishlist"
