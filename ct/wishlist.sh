@@ -34,9 +34,11 @@ function update_script() {
     systemctl stop wishlist
     msg_ok "Stopped Service"
 
-    cp /opt/wishlist/.env /opt/wishlist.env
-    cp -R /opt/wishlist/uploads /opt/
-    cp -R /opt/wishlist/data /opt/
+    mkdir -p /opt/wishlist-backup
+    cp /opt/wishlist/.env /opt/wishlist-backup/.env
+    cp -R /opt/wishlist/uploads /opt/wishlist-backup/uploads
+    cp -R /opt/wishlist/data /opt/wishlist-backup/data
+
     CLEAN_INSTALL=1 fetch_and_deploy_gh_release "wishlist" "cmintey/wishlist" "tarball"
     LATEST_APP_VERSION=$(get_latest_github_release "cmintey/wishlist")
 
@@ -47,15 +49,15 @@ function update_script() {
     $STD pnpm svelte-kit sync
     $STD pnpm prisma generate
     sed -i 's|/usr/src/app/|/opt/wishlist/|g' $(grep -rl '/usr/src/app/' /opt/wishlist)
-    export VERSION="${LATEST_APP_VERSION}" 
-    export SHA="${LATEST_APP_VERSION}" 
+    export VERSION="${LATEST_APP_VERSION}"
+    export SHA="${LATEST_APP_VERSION}"
     $STD pnpm run build
     $STD pnpm prune --prod
     chmod +x /opt/wishlist/entrypoint.sh
 
-    mv /opt/wishlist.env /opt/wishlist/.env
-    mv /opt/uploads /opt/wishlist/uploads
-    mv /opt/data /opt/wishlist/data
+    mv /opt/wishlist-backup/.env /opt/wishlist/.env
+    mv /opt/wishlist-backup/uploads /opt/wishlist/uploads
+    mv /opt/wishlist-backup/data /opt/wishlist/data
 
     msg_ok "Updated ${APP}"
 

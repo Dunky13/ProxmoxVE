@@ -14,7 +14,12 @@ network_check
 update_os
 
 msg_info "Installing dependencies"
-$STD apt install -y build-essential python3 openssl git caddy
+$STD apt install -y \
+  build-essential \
+  python3 \
+  openssl \
+  git \
+  caddy
 msg_ok "Installed dependencies"
 
 NODE_VERSION="24" NODE_MODULE="pnpm" setup_nodejs
@@ -23,23 +28,20 @@ LATEST_APP_VERSION=$(get_latest_github_release "cmintey/wishlist")
 
 msg_info "Installing Wishlist"
 cd /opt/wishlist
-
 cat <<EOF >/opt/wishlist/.env
-  NODE_ENV=production
-  BODY_SIZE_LIMIT=5000000
-  ORIGIN="http://0.0.0.0:3280" # The URL your users will be connecting to
-  TOKEN_TIME=72 # hours until signup and password reset tokens expire
-  DEFAULT_CURRENCY=EUR
-  MAX_IMAGE_SIZE=5000000 # 5 megabytes
+NODE_ENV=production
+BODY_SIZE_LIMIT=5000000
+ORIGIN="http://0.0.0.0:3280" # The URL your users will be connecting to
+TOKEN_TIME=72 # hours until signup and password reset tokens expire
+DEFAULT_CURRENCY=EUR
+MAX_IMAGE_SIZE=5000000 # 5 megabytes
 EOF
-
 $STD pnpm install
 $STD pnpm svelte-kit sync
 $STD pnpm prisma generate
 sed -i 's|/usr/src/app/|/opt/wishlist/|g' $(grep -rl '/usr/src/app/' /opt/wishlist)
-
-export VERSION="${LATEST_APP_VERSION}" 
-export SHA="${LATEST_APP_VERSION}" 
+export VERSION="${LATEST_APP_VERSION}"
+export SHA="${LATEST_APP_VERSION}"
 $STD pnpm run build
 $STD pnpm prune --prod
 chmod +x /opt/wishlist/entrypoint.sh
@@ -56,7 +58,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/wishlist
-ExecStart=/usr/bin/env bash -c '[ -f ./.env ] && { set -a; . /opt/wishlist/.env || true; set +a;}; ./entrypoint.sh'
+ExecStart=/usr/bin/env bash -c '[ -f /opt/wishlist/.env ] && { set -a; . /opt/wishlist/.env || true; set +a;}; ./entrypoint.sh'
 Restart=on-failure
 
 [Install]
@@ -68,4 +70,3 @@ msg_ok "Created Service"
 motd_ssh
 customize
 cleanup_lxc
-echo "Edit /opt/wishlist/.env to customize settings"
