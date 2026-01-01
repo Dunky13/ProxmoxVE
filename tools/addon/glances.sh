@@ -48,7 +48,7 @@ install_glances_debian() {
   msg_ok "Installed dependencies"
 
   msg_info "Setting up Python + uv"
-  source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/tools.func)
+  source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/tools.func)
   setup_uv PYTHON_VERSION="3.12"
   msg_ok "Setup Python + uv"
 
@@ -118,7 +118,7 @@ install_glances_alpine() {
   msg_ok "Installed dependencies"
 
   msg_info "Setting up Python + uv"
-  source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/tools.func)
+  source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/tools.func)
   setup_uv PYTHON_VERSION="3.12"
   msg_ok "Setup Python + uv"
 

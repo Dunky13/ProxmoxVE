@@ -22,7 +22,7 @@ generate_headers() {
   for script in "${file_list[@]}"; do
     [[ -f "$script" ]] || continue
 
-    app_name=$(grep -oP '^APP="\K[^"]+' "$script" 2>/dev/null)
+    app_name=$(/opt/homebrew/opt/grep/libexec/gnubin/grep -oP '^APP="\K[^"]+' "$script" 2>/dev/null)
     if [[ -n "$app_name" ]]; then
       output_file="${headers_dir}/$(basename "${script%.*}")"
       figlet_output=$(figlet -w 500 -f slant "$app_name")

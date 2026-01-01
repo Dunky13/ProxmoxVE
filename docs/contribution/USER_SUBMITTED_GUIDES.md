@@ -1,6 +1,6 @@
 <div align="center">
   <a href="#">
-    <img src="https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/images/logo.png" height="100px" />
+    <img src="https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/images/logo.png" height="100px" />
  </a>
 </div>
 <h2 align="center">User Submitted Guides </h2>

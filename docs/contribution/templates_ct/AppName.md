@@ -52,7 +52,7 @@ source <(curl -s https://raw.githubusercontent.com/[USER]/[REPO]/refs/heads/[BRA
 Final script:
 
 ```bash
-source <(curl -s https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/build.func)
+source <(curl -s https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/build.func)
 ```
 
 > [!CAUTION]

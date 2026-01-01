@@ -5,9 +5,9 @@
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/bakito/adguardhome-sync
 
-source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/core.func)
-source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/tools.func)
-source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/error_handler.func)
+source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/core.func)
+source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/tools.func)
+source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/error_handler.func)
 
 # Enable error handling
 set -Eeuo pipefail
@@ -265,7 +265,7 @@ EOF
   cat <<'UPDATEEOF' >/usr/local/bin/update_adguardhome-sync
 #!/usr/bin/env bash
 # AdGuardHome-Sync Update Script
-type=update bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/tools/addon/adguardhome-sync.sh)"
+type=update bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/tools/addon/adguardhome-sync.sh)"
 UPDATEEOF
   chmod +x /usr/local/bin/update_adguardhome-sync
   msg_ok "Created update script (/usr/local/bin/update_adguardhome-sync)"

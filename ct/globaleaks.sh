@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist/misc/build.func)
+source <(curl -fsSL https://raw.githubusercontent.com/Dunky13/ProxmoxVE/refs/heads/feature/wishlist-testing/misc/build.func)
 # Copyright (c) 2021-2025 communtiy-scripts ORG
 # Author: Giovanni Pellerano (evilaliv3)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
